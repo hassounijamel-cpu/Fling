@@ -175,3 +175,11 @@ AddColorPicker(Detect, {
     ESP.Color = Value
   end
 })
+
+
+AddButton(Main, {
+  Name = "سـكربـت AntiAFK 1",
+  Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/YallSumLs/Scripts/refs/heads/main/Anti-Afk"))()
+  end
+})
