@@ -1,0 +1,177 @@
+local RunService = game:GetService("RunService")
+
+-- 🆕 صور البداية
+local firstFrameIds = {
+    131880369848341,
+    101974827950812,
+    137269098604758,
+    75340906583286,
+    120737639291836
+}
+
+-- الصور الباقية
+local frameIds = {
+    114772686664133,
+    111804512261408,
+    123983950568966,
+    139705027397213,
+    127906745178338,
+    85969699943215,
+    101824695313609,
+    130411126513038,
+    138387612822571,
+    75542507840798,
+    113734556610599,
+    133156855875357,
+    81422448338939
+}
+
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "Merry Christmas"
+screenGui.IgnoreGuiInset = true
+screenGui.ResetOnSpawn = false
+screenGui.Parent = playerGui
+
+local background = Instance.new("ImageLabel")
+background.Size = UDim2.new(1, 0, 1, 0)
+background.BackgroundTransparency = 1
+background.Image = "rbxassetid://94067569796788"
+background.ScaleType = Enum.ScaleType.Crop
+background.ResampleMode = Enum.ResamplerMode.Pixelated
+background.ZIndex = 0
+background.Parent = screenGui
+
+local textLabel = Instance.new("TextLabel")
+textLabel.Size = UDim2.new(1, 0, 0.2, 0)
+textLabel.Position = UDim2.new(0, 0, 0.4, 0)
+textLabel.BackgroundTransparency = 1
+textLabel.Text = "Merry Christmas"
+textLabel.Font = Enum.Font.BuilderSansBold
+textLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+textLabel.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+textLabel.TextStrokeTransparency = 0
+textLabel.TextScaled = true
+textLabel.ZIndex = 10
+textLabel.Parent = screenGui
+
+-- 🎧 الصوت الجديد
+local sound = Instance.new("Sound")
+sound.SoundId = "rbxassetid://1838667168"
+sound.Volume = 1
+sound.Parent = screenGui
+sound:Play()
+
+local fps = 10
+local interval = 1 / fps
+local totalTime = 15 -- مدة عرض الصور بالثواني
+local startTime = tick()
+
+-- 🔁 عرض الصور بشكل متكرر لمدة 15 ثانية
+while tick() - startTime < totalTime do
+    -- عرض صور البداية
+    for _, id in ipairs(firstFrameIds) do
+        if tick() - startTime >= totalTime then break end
+        local frame = Instance.new("ImageLabel")
+        frame.Size = UDim2.new(1, 0, 1, 0)
+        frame.BackgroundTransparency = 1
+        frame.Image = "rbxassetid://" .. id
+        frame.ScaleType = Enum.ScaleType.Crop
+        frame.ResampleMode = Enum.ResamplerMode.Pixelated
+        frame.ZIndex = 5
+        frame.Parent = screenGui
+
+        RunService.RenderStepped:Wait()
+        task.wait(interval)
+
+        frame:Destroy()
+    end
+
+    -- عرض الصور الباقية
+    for _, id in ipairs(frameIds) do
+        if tick() - startTime >= totalTime then break end
+        local frame = Instance.new("ImageLabel")
+        frame.Size = UDim2.new(1, 0, 1, 0)
+        frame.BackgroundTransparency = 1
+        frame.Image = "rbxassetid://" .. id
+        frame.ScaleType = Enum.ScaleType.Crop
+        frame.ResampleMode = Enum.ResamplerMode.Pixelated
+        frame.ZIndex = 5
+        frame.Parent = screenGui
+
+        RunService.RenderStepped:Wait()
+        task.wait(interval)
+
+        frame:Destroy()
+    end
+end
+
+sound:Stop()
+screenGui:Destroy()
+
+--=====================--
+--   واجهة مخصصة
+--=====================--
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/zainmhmd654/RV5-Gradint-Arabic-Red.-/refs/heads/main/Protected_2874393560008099.lua.txt")))()
+
+MakeWindow({
+    Hub = {
+        Title = "Neymar Hub | Fling",
+        Animation = "سكربت المطور Neymar Hub"
+    },
+    Key = {
+        KeySystem = false,
+        Title = "Key System",
+        Description = "",
+        KeyLink = "",
+        Keys = {"12924"},
+        Notifi = {
+            Notifications = true,
+            CorrectKey = "Running the Script...",
+            Incorrectkey = "The key is incorrect",
+            CopyKeyLink = "Copied to Clipboard"
+        }
+    }
+})
+
+MinimizeButton({
+  Image = "rbxassetid://137269098604758", -- ← هنا الصورة
+  Size = {40, 40},
+  Color = Color3.fromRGB(10, 10, 10),
+  Corner = true,
+  Stroke = false,
+  StrokeColor = Color3.fromRGB(255, 0, 0)
+})
+
+local Detect = MakeTab({Name = "كشف"})
+
+local ESP = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))()
+ESP:Toggle(true)
+ESP.Players = false
+ESP.Names = false
+
+AddToggle(Detect, {
+  Name = "تفعيل الكشف",
+  Default = false,
+  Callback = function(Value)
+    ESP.Players = Value
+  end
+})
+
+AddToggle(Detect, {
+  Name = "اسامي الاعبين",
+  Default = false,
+  Callback = function(Value)
+    ESP.Names = Value
+  end
+})
+
+AddColorPicker(Detect, {
+  Name = "لون ESP",
+  Default = Color3.fromRGB(255, 255, 0),
+  Callback = function(Value)
+    ESP.Color = Value
+  end
+})
