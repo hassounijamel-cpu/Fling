@@ -177,9 +177,9 @@ AddColorPicker(Detect, {
 })
 
 
-AddButton(Main, {
-  Name = "سـكربـت AntiAFK 1",
-  Callback = function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/YallSumLs/Scripts/refs/heads/main/Anti-Afk"))()
-  end
+local Btn = AddButton(Main, {
+    Name = "طير الشخص بيعد",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/YallSumLs/Scripts/refs/heads/main/Anti-Afk"))()
+    end
 })
